@@ -10,7 +10,7 @@ public class TankShooter : MonoBehaviour
     [SerializeField] private int maxAmmo = 7; // Jumlah maksimum amunisi
     
     private int m_CurrentAmmo; // Jumlah amunisi saat ini
-    private List<GameObject> missilePool = new List<GameObject>();
+    private List<GameObject> m_MissilePool = new List<GameObject>();
 
     private void Start()
     {
@@ -19,7 +19,7 @@ public class TankShooter : MonoBehaviour
         {
             GameObject missile = Instantiate(missilePrefab, missileParent);
             missile.SetActive(false);
-            missilePool.Add(missile);
+            m_MissilePool.Add(missile);
         }
 
         m_CurrentAmmo = maxAmmo; // Mengatur jumlah amunisi awal
@@ -42,12 +42,10 @@ public class TankShooter : MonoBehaviour
 
     private GameObject GetMissileFromPool()
     {
-        foreach (GameObject missile in missilePool)
+        foreach (GameObject missile in m_MissilePool)
         {
             if (!missile.activeInHierarchy)
-            {
                 return missile;
-            }
         }
         return null; // Mengembalikan null jika tidak ada misil yang tersedia
     }

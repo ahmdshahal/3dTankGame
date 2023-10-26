@@ -12,7 +12,7 @@ public class TankHealth : MonoBehaviour
     private MeshRenderer m_MeshRenderer;
     private Vector3 m_OriginPosition;
     private float m_CurrentHealth;
-    private bool m_Dead;
+    private bool m_IsDead;
 
     private void Awake()
     {
@@ -30,7 +30,7 @@ public class TankHealth : MonoBehaviour
         //Mereset health saat ini
         m_CurrentHealth = tankHealth;
         //Mereset kalau tank hidup
-        m_Dead = false;
+        m_IsDead = false;
         tankRenderers.SetActive(true);
     }
 
@@ -40,7 +40,7 @@ public class TankHealth : MonoBehaviour
         m_CurrentHealth -= amount;
 
         //Jika health saat ini kurang dari 0 dan tidak sedang dead maka tank akan mati
-        if (m_CurrentHealth <= 0 & !m_Dead)
+        if (m_CurrentHealth <= 0 & !m_IsDead)
         {
             StartCoroutine(OnDeath());
         }
@@ -48,7 +48,7 @@ public class TankHealth : MonoBehaviour
 
     private IEnumerator OnDeath()
     {
-        m_Dead = true;
+        m_IsDead = true;
 
         //Aktifkan efek ledakan
         explosionEffect.Play();
@@ -71,5 +71,6 @@ public class TankHealth : MonoBehaviour
         yield return new WaitForSeconds(respawnTime);
         
         tankRenderers.SetActive(true); //Setelah respawn time, mengaktifkan tank kembali
+        m_TankController.NormalTankSpeed(); //Mengembalikan kecepatan tank
     }
 }

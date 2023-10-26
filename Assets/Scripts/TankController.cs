@@ -9,9 +9,9 @@ public class TankController : MonoBehaviour
 
     private float m_CurrentMoveSpeed;
 
-    private void OnEnable()
+    private void Start()
     {
-        m_CurrentMoveSpeed = moveSpeed;
+        NormalTankSpeed();
     }
 
     public void TankMovement(Vector2 input)
@@ -37,5 +37,10 @@ public class TankController : MonoBehaviour
     public void OnDeath()
     {
         m_CurrentMoveSpeed = 0;
+    }
+
+    public void NormalTankSpeed()
+    {
+        m_CurrentMoveSpeed = moveSpeed;
     }
 }

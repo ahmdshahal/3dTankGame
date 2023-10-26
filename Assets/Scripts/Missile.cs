@@ -41,14 +41,22 @@ public class Missile : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        // Menghancurkan misil saat menabrak tembok atau tank lain
-        // Anda dapat menambahkan logika lain di sini, seperti mengurangi kesehatan tank jika terkena
+        // Jika bertabrakan dengan wall atau tank
         if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Tank"))
         {
+            // Menghancurkan misil dan menampilkan efek ledakan
             StartCoroutine(Explode());
+            
+            //Mengecek komponen Tank Health pada tank, jika ada maka memanggil fungsi Take Damage
             if (collision.gameObject.TryGetComponent(out TankHealth tankHealth))
             {
                 tankHealth.TakeDamage(missileDamage);
+            }
+
+            //Mengecek komponen Destructible Wall pada wall, jika ada maka memanggil fungsi Take Damage
+            if (collision.gameObject.TryGetComponent(out DestructibleWall destructibleWall))
+            {
+                destructibleWall.TakeDamage(missileDamage);
             }
         }
     }
