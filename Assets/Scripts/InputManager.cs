@@ -17,13 +17,14 @@ public class InputManager : MonoBehaviour
         m_TankControllerScript = GetComponent<TankController>();
         m_TankShooterScript = GetComponent<TankShooter>();
         
-        m_InGameActions.Rotation.performed += ctx => m_TankControllerScript.RotateTank(m_InGameActions.Rotation.ReadValue<float>());
+        //m_InGameActions.Rotation.performed += ctx => m_TankControllerScript.RotateTank(m_InGameActions.Rotation.ReadValue<float>());
         m_InGameActions.Fire.performed += ctx => m_TankShooterScript.FireMissile();
     }
 
     private void Update()
     {
         m_TankControllerScript.TankMovement(m_InGameActions.Movement.ReadValue<Vector2>());
+        m_TankControllerScript.RotateTank(m_InGameActions.Rotation.ReadValue<float>());
     }
 
     private void LateUpdate()

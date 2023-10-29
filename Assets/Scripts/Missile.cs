@@ -25,7 +25,7 @@ public class Missile : MonoBehaviour
         m_CurrentMissileSpeed = missileSpeed;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         // Bergerak maju sesuai dengan kecepatan
         transform.Translate(Vector3.forward * (m_CurrentMissileSpeed * Time.deltaTime));

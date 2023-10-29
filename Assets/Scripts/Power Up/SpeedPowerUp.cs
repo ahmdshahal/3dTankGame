@@ -6,9 +6,9 @@ namespace Power_Up
 {
     public class SpeedPowerUp : MonoBehaviour
     {
-        [SerializeField] private float speedDuration;
+        [SerializeField] private float lifeTime = 10;
 
-        private float m_SpeedMultiplier = 2f;
+        private float m_SpeedUp = 10;
 
         private void OnTriggerEnter(Collider other)
         {
@@ -17,22 +17,25 @@ namespace Power_Up
                 if (other.TryGetComponent(out TankController tankController))
                 {
                     Activate(tankController);
+                    CancelInvoke();
+                    ReturnToPool();
                 }
             }
         }
 
         private void Activate(TankController tankController)
         {
-            tankController.FasterTankSpeed(m_SpeedMultiplier);
-
-            StartCoroutine(Deactivate(tankController));
+            tankController.FasterTankSpeed(m_SpeedUp);
+        }
+        
+        private void OnEnable()
+        {
+            Invoke("ReturnToPool", lifeTime);
         }
 
-        private IEnumerator Deactivate(TankController tankController)
+        private void ReturnToPool()
         {
-            yield return new WaitForSeconds(speedDuration);
-            
-            tankController.NormalTankSpeed();
+            gameObject.SetActive(false);
         }
     }
 }

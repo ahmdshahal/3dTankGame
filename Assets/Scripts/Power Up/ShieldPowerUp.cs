@@ -7,7 +7,7 @@ namespace Power_Up
 {
     public class ShieldPowerUp : MonoBehaviour
     {
-        [SerializeField] private float shieldDuration;
+        [SerializeField] private float lifeTime = 10;
 
         private void OnTriggerEnter(Collider other)
         {
@@ -16,6 +16,7 @@ namespace Power_Up
                 if (other.TryGetComponent(out TankHealth tankHealth))
                 {
                     Activate(tankHealth);
+                    ReturnToPool();
                 }
             }
         }
@@ -23,14 +24,18 @@ namespace Power_Up
         private void Activate(TankHealth tankHealth)
         {
             tankHealth.ActivateShield();
-            StartCoroutine(Deactivate(tankHealth));
+            
+            Debug.Log("Shield Activated");
+        }
+        
+        private void OnEnable()
+        {
+            Invoke("ReturnToPool", lifeTime);
         }
 
-        private IEnumerator Deactivate(TankHealth tankHealth)
+        private void ReturnToPool()
         {
-            yield return new WaitForSeconds(shieldDuration);
-            
-            tankHealth.DeactivateShield();
+            gameObject.SetActive(false);
         }
     }
 }

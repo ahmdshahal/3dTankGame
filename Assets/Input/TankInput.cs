@@ -68,7 +68,7 @@ public partial class @TankInput : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""829a55c5-09c3-4b66-aa9d-ab966c8246a8"",
-                    ""path"": ""<Mouse>/delta"",
+                    ""path"": ""<Mouse>/position"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -113,28 +113,6 @@ public partial class @TankInput : IInputActionCollection2, IDisposable
                     ""name"": ""down"",
                     ""id"": ""1ebc01e4-2d61-474e-aaba-f1979c50000e"",
                     ""path"": ""<Keyboard>/s"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""1adfca3f-2438-4276-a304-dde770e6f9e1"",
-                    ""path"": """",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""c9a1263d-9070-40c4-87ea-3cead878b973"",
-                    ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

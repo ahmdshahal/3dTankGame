@@ -6,7 +6,6 @@ namespace Tank
     public class TankShooter : MonoBehaviour
     {
         [SerializeField] private Transform fireTransform; // Posisi spawn misil
-        [SerializeField] private Transform missileParent; // Parent dari misil
         [SerializeField] private GameObject missilePrefab; // Prefab misil
         [SerializeField] private int maxAmmo = 7; // Jumlah maksimum amunisi
     
@@ -18,7 +17,7 @@ namespace Tank
             // Inisialisasi pool misil
             for (int i = 0; i < maxAmmo; i++)
             {
-                GameObject missile = Instantiate(missilePrefab, missileParent);
+                GameObject missile = Instantiate(missilePrefab);
                 missile.SetActive(false);
                 m_MissilePool.Add(missile);
             }
