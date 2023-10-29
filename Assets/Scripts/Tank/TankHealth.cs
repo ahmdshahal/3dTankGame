@@ -16,7 +16,7 @@ namespace Tank
         private TankController m_TankController;
         private MeshRenderer m_MeshRenderer;
         private Vector3 m_OriginPosition;
-        [SerializeField]private float m_CurrentHealth;
+        private float m_CurrentHealth;
         private bool m_IsDead;
 
         private void Awake()
