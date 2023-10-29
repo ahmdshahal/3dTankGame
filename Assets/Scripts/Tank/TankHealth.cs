@@ -6,6 +6,7 @@ namespace Tank
     public class TankHealth : MonoBehaviour
     {
         public GameObject tankShield;
+        public float shieldDuration = 5;
         
         [SerializeField] private ParticleSystem explosionEffect;
         [SerializeField] private GameObject tankRenderers;
@@ -86,12 +87,12 @@ namespace Tank
         public void ActivateShield()
         {
             tankShield.SetActive(true);
-            gameObject.tag = "Shield";
+            
+            Invoke("DeactivateShield", shieldDuration);
         }
 
-        public void DeactivateShield()
+        private void DeactivateShield()
         {
-            gameObject.tag = "Tank";
             tankShield.SetActive(false);
         }
     }
