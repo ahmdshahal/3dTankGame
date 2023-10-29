@@ -1,3 +1,4 @@
+using Tank;
 using UnityEngine;
 
 public class InputManager : MonoBehaviour

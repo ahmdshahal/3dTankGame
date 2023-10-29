@@ -1,8 +1,6 @@
-using System;
 using System.Collections;
-using Unity.Mathematics;
+using Tank;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class Missile : MonoBehaviour
 {
@@ -44,6 +42,7 @@ public class Missile : MonoBehaviour
         // Jika bertabrakan dengan wall atau tank
         if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Tank"))
         {
+            Debug.Log(collision.gameObject.name);
             // Menghancurkan misil dan menampilkan efek ledakan
             StartCoroutine(Explode());
             
@@ -58,6 +57,11 @@ public class Missile : MonoBehaviour
             {
                 destructibleWall.TakeDamage(missileDamage);
             }
+        }
+
+        if (collision.gameObject.CompareTag("Shield"))
+        {
+            StartCoroutine(Explode());
         }
     }
 
@@ -78,6 +82,6 @@ public class Missile : MonoBehaviour
 
     private void OnDisable()
     {
-        gameObject.transform.rotation = quaternion.identity;
+        gameObject.transform.rotation = Quaternion.identity;
     }
 }
