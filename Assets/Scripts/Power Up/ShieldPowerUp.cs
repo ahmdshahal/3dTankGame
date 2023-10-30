@@ -24,8 +24,6 @@ namespace Power_Up
         private void Activate(TankHealth tankHealth)
         {
             tankHealth.ActivateShield();
-            
-            Debug.Log("Shield Activated");
         }
         
         private void OnEnable()
