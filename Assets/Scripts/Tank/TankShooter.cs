@@ -27,6 +27,7 @@ namespace Tank
 
         public void FireMissile()
         {
+            // Jika amunisi tersedia, maka mengaktifkan misil yang tersedia
             if (m_CurrentAmmo > 0)
             {
                 GameObject missile = GetMissileFromPool();
@@ -42,6 +43,7 @@ namespace Tank
 
         private GameObject GetMissileFromPool()
         {
+            // Mencari misil yang tersedia untuk dimunculkan
             foreach (GameObject missile in m_MissilePool)
             {
                 if (!missile.activeInHierarchy)
@@ -52,6 +54,7 @@ namespace Tank
 
         public void ReloadAmmo()
         {
+            // Mengembalikan jumlah ammo ke jumlah maksimum
             m_CurrentAmmo = maxAmmo;
         }
     }

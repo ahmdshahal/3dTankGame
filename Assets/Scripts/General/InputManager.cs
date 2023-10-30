@@ -26,6 +26,7 @@ public class InputManager : MonoBehaviour
 
     private void Start()
     {
+        // Mengecek input player agar sesuai dengan nomor player
         switch (playerNumber)
         {
             case 1:
@@ -39,6 +40,7 @@ public class InputManager : MonoBehaviour
 
     private void Update()
     {
+        // Mengecek input player agar sesuai dengan nomor player
         switch (playerNumber)
         {
             case 1:
@@ -50,6 +52,12 @@ public class InputManager : MonoBehaviour
                 m_TankMovementScript.RotateTank(m_Player2Actions.Rotation.ReadValue<float>());
                 break;
         }
+    }
+    
+    private void LateUpdate()
+    {
+        // Kontrol turret dengan mousess
+        //m_TankControllerScript.AimTurret(m_InGameActions.Aiming.ReadValue<Vector2>());
     }
 
     private void OnEnable()

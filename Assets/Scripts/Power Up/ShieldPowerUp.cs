@@ -7,15 +7,17 @@ namespace Power_Up
 {
     public class ShieldPowerUp : MonoBehaviour
     {
-        [SerializeField] private float lifeTime = 10;
+        [SerializeField] private float lifeTime = 10; // Waktu hodup power up setelah aktif
 
         private void OnTriggerEnter(Collider other)
         {
+            // Kondisi jika diambil oleh Tank
             if (other.CompareTag("Tank"))
             {
                 if (other.TryGetComponent(out TankHealth tankHealth))
                 {
                     Activate(tankHealth);
+                    CancelInvoke(); // Membatalkan waktu hidup, karena sudah diambil oleh tank
                     ReturnToPool();
                 }
             }
@@ -23,16 +25,19 @@ namespace Power_Up
 
         private void Activate(TankHealth tankHealth)
         {
+            // Mengaktifkan Tank Shield
             tankHealth.ActivateShield();
         }
         
         private void OnEnable()
         {
+            // Set waktu hodup
             Invoke("ReturnToPool", lifeTime);
         }
 
         private void ReturnToPool()
         {
+            // Mengembalikan ke pool
             gameObject.SetActive(false);
         }
     }

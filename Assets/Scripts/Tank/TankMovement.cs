@@ -7,6 +7,7 @@ namespace Tank
         [SerializeField] private float moveSpeed = 5; //Kecepatan bergerak tank
         [SerializeField] private float turnSpeed = 100; //Kecepatan berbelok tank
         [SerializeField] private float speedUpDuration = 5; //Kecepatan berbelok tank
+        [SerializeField] private Transform turretTransform; //Transform dari meriam tank
 
         private float m_CurrentMoveSpeed;
 
@@ -26,6 +27,18 @@ namespace Tank
         {
             // Mengatur rotasi tank
             transform.Rotate(0, input * (turnSpeed * Time.deltaTime), 0);
+        }
+        
+        public void AimTurret(Vector2 input)
+        {
+            //Mengatur rotasi meriam mengikuti posisi mouse
+            Ray ray = Camera.main.ScreenPointToRay(input);
+            if (Physics.Raycast(ray, out RaycastHit hit, 100))
+            {
+                Debug.DrawLine(ray.origin, hit.point);
+                Vector3 lookRotation = new Vector3(hit.point.x, turretTransform.position.y, hit.point.z);
+                turretTransform.LookAt(lookRotation);
+            }
         }
 
         public void StopTankSpeed()
