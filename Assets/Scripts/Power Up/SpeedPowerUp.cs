@@ -14,7 +14,7 @@ namespace Power_Up
         {
             if (other.CompareTag("Tank"))
             {
-                if (other.TryGetComponent(out TankController tankController))
+                if (other.TryGetComponent(out TankMovement tankController))
                 {
                     Activate(tankController);
                     CancelInvoke();
@@ -23,9 +23,9 @@ namespace Power_Up
             }
         }
 
-        private void Activate(TankController tankController)
+        private void Activate(TankMovement tankMovement)
         {
-            tankController.FasterTankSpeed(m_SpeedUp);
+            tankMovement.FasterTankSpeed(m_SpeedUp);
         }
         
         private void OnEnable()

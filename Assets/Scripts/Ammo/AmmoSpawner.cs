@@ -45,7 +45,6 @@ public class AmmoSpawner : MonoBehaviour
                 if (IsAvailableSpawnPosition(spawnPosition))
                 {
                     m_AmmoPool[i].transform.position = spawnPosition.position;
-                    Debug.Log(spawnPosition.name);
                     m_AmmoPool[i].SetActive(true);
                     break;
                 }

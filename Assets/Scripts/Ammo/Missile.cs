@@ -1,4 +1,5 @@
 using System.Collections;
+using Base;
 using Tank;
 using UnityEngine;
 
@@ -11,10 +12,12 @@ public class Missile : MonoBehaviour
     private float m_CurrentMissileSpeed; //Kecepatan misil realtime
     private float m_Lifetime = 2.0f; // Waktu hidup misil
     private MeshRenderer m_MeshRenderer;
+    private BoxCollider m_BoxCollider;
 
     private void Awake()
     {
         m_MeshRenderer = GetComponent<MeshRenderer>();
+        m_BoxCollider = GetComponent<BoxCollider>();
     }
 
     private void OnEnable()
@@ -22,6 +25,7 @@ public class Missile : MonoBehaviour
         // Set waktu hidup misil
         Invoke("ReturnToPool", m_Lifetime);
         m_MeshRenderer.enabled = true;
+        m_BoxCollider.enabled = true;
         m_CurrentMissileSpeed = missileSpeed;
     }
 
@@ -40,9 +44,20 @@ public class Missile : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         // Jika bertabrakan dengan wall atau tank
-        if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Tank"))
+        if (collision.gameObject.CompareTag("Wall"))
         {
-            Debug.Log(collision.gameObject.name);
+            // Menghancurkan misil dan menampilkan efek ledakan
+            StartCoroutine(Explode());
+
+            //Mengecek komponen Destructible Wall pada wall, jika ada maka memanggil fungsi Take Damage
+            if (collision.gameObject.TryGetComponent(out DestructibleWall destructibleWall))
+            {
+                destructibleWall.TakeDamage(missileDamage);
+            }
+        }
+
+        if (collision.gameObject.CompareTag("Tank"))
+        {
             // Menghancurkan misil dan menampilkan efek ledakan
             StartCoroutine(Explode());
             
@@ -51,11 +66,17 @@ public class Missile : MonoBehaviour
             {
                 tankHealth.TakeDamage(missileDamage);
             }
+        }
 
-            //Mengecek komponen Destructible Wall pada wall, jika ada maka memanggil fungsi Take Damage
-            if (collision.gameObject.TryGetComponent(out DestructibleWall destructibleWall))
+        if (collision.gameObject.CompareTag("Base"))
+        {
+            // Menghancurkan misil dan menampilkan efek ledakan
+            StartCoroutine(Explode());
+            
+            //Mengecek komponen Base Health pada tank, jika ada maka memanggil fungsi Take Damage
+            if (collision.gameObject.TryGetComponent(out BaseHealth baseHealth))
             {
-                destructibleWall.TakeDamage(missileDamage);
+                baseHealth.TakeDamage(missileDamage);
             }
         }
 
@@ -71,6 +92,7 @@ public class Missile : MonoBehaviour
         explosionEffect.Play();
         
         m_MeshRenderer.enabled = false; //Menonaktifkan mesh dari misil
+        m_BoxCollider.enabled = false;
         m_CurrentMissileSpeed = 0; //Mengehentikan gerakan misil
         
         //IENumerator akan berhenti sesuai durasi dari efek ledakan

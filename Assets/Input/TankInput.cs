@@ -24,7 +24,7 @@ public partial class @TankInput : IInputActionCollection2, IDisposable
     ""name"": ""TankInput"",
     ""maps"": [
         {
-            ""name"": ""InGame"",
+            ""name"": ""Player1"",
             ""id"": ""b1851412-9f59-4c82-bfd4-1d8ccdad0ae7"",
             ""actions"": [
                 {
@@ -79,7 +79,7 @@ public partial class @TankInput : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""75cc6afc-eed4-4d4f-9117-ac3541c1e408"",
-                    ""path"": ""<Keyboard>/space"",
+                    ""path"": ""<Keyboard>/leftShift"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -154,16 +154,154 @@ public partial class @TankInput : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 }
             ]
+        },
+        {
+            ""name"": ""Player2"",
+            ""id"": ""65f5aa21-305c-4a7c-b2e7-b9036cd7b703"",
+            ""actions"": [
+                {
+                    ""name"": ""Movement"",
+                    ""type"": ""Value"",
+                    ""id"": ""2212a919-a700-4145-84f0-4d64b9344e56"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Rotation"",
+                    ""type"": ""Button"",
+                    ""id"": ""d6f5816a-2bd4-41e1-a7f9-9f29903c6c27"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Aiming"",
+                    ""type"": ""Value"",
+                    ""id"": ""26b2a87e-837e-43ca-9e85-8199eee5667c"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Fire"",
+                    ""type"": ""Button"",
+                    ""id"": ""a45426a3-93a9-45c8-b27e-c63d89ad2b61"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""0f485ef3-a50b-433a-957f-b66b6a935928"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Aiming"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c77eded6-166a-40b6-8915-9df72c89e4f8"",
+                    ""path"": ""<Keyboard>/rightShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Keyboard Input"",
+                    ""id"": ""e3a939d8-1c71-45c8-9549-545ffaae7818"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""ad2b0d8f-d14d-4ef8-aca4-90d5448e37cf"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""7a4d176e-9a65-4214-8c74-4bdd343893d5"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard Input"",
+                    ""id"": ""7581dbed-3e8c-46d0-9380-14fbe600d9b0"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotation"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""9ee0e86a-39cd-4e89-8041-482eab8169fd"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""9ef3c4bf-b69e-4972-88c1-3b8ba295bfef"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
 }");
-        // InGame
-        m_InGame = asset.FindActionMap("InGame", throwIfNotFound: true);
-        m_InGame_Movement = m_InGame.FindAction("Movement", throwIfNotFound: true);
-        m_InGame_Rotation = m_InGame.FindAction("Rotation", throwIfNotFound: true);
-        m_InGame_Aiming = m_InGame.FindAction("Aiming", throwIfNotFound: true);
-        m_InGame_Fire = m_InGame.FindAction("Fire", throwIfNotFound: true);
+        // Player1
+        m_Player1 = asset.FindActionMap("Player1", throwIfNotFound: true);
+        m_Player1_Movement = m_Player1.FindAction("Movement", throwIfNotFound: true);
+        m_Player1_Rotation = m_Player1.FindAction("Rotation", throwIfNotFound: true);
+        m_Player1_Aiming = m_Player1.FindAction("Aiming", throwIfNotFound: true);
+        m_Player1_Fire = m_Player1.FindAction("Fire", throwIfNotFound: true);
+        // Player2
+        m_Player2 = asset.FindActionMap("Player2", throwIfNotFound: true);
+        m_Player2_Movement = m_Player2.FindAction("Movement", throwIfNotFound: true);
+        m_Player2_Rotation = m_Player2.FindAction("Rotation", throwIfNotFound: true);
+        m_Player2_Aiming = m_Player2.FindAction("Aiming", throwIfNotFound: true);
+        m_Player2_Fire = m_Player2.FindAction("Fire", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -220,44 +358,44 @@ public partial class @TankInput : IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // InGame
-    private readonly InputActionMap m_InGame;
-    private IInGameActions m_InGameActionsCallbackInterface;
-    private readonly InputAction m_InGame_Movement;
-    private readonly InputAction m_InGame_Rotation;
-    private readonly InputAction m_InGame_Aiming;
-    private readonly InputAction m_InGame_Fire;
-    public struct InGameActions
+    // Player1
+    private readonly InputActionMap m_Player1;
+    private IPlayer1Actions m_Player1ActionsCallbackInterface;
+    private readonly InputAction m_Player1_Movement;
+    private readonly InputAction m_Player1_Rotation;
+    private readonly InputAction m_Player1_Aiming;
+    private readonly InputAction m_Player1_Fire;
+    public struct Player1Actions
     {
         private @TankInput m_Wrapper;
-        public InGameActions(@TankInput wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Movement => m_Wrapper.m_InGame_Movement;
-        public InputAction @Rotation => m_Wrapper.m_InGame_Rotation;
-        public InputAction @Aiming => m_Wrapper.m_InGame_Aiming;
-        public InputAction @Fire => m_Wrapper.m_InGame_Fire;
-        public InputActionMap Get() { return m_Wrapper.m_InGame; }
+        public Player1Actions(@TankInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Movement => m_Wrapper.m_Player1_Movement;
+        public InputAction @Rotation => m_Wrapper.m_Player1_Rotation;
+        public InputAction @Aiming => m_Wrapper.m_Player1_Aiming;
+        public InputAction @Fire => m_Wrapper.m_Player1_Fire;
+        public InputActionMap Get() { return m_Wrapper.m_Player1; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(InGameActions set) { return set.Get(); }
-        public void SetCallbacks(IInGameActions instance)
+        public static implicit operator InputActionMap(Player1Actions set) { return set.Get(); }
+        public void SetCallbacks(IPlayer1Actions instance)
         {
-            if (m_Wrapper.m_InGameActionsCallbackInterface != null)
+            if (m_Wrapper.m_Player1ActionsCallbackInterface != null)
             {
-                @Movement.started -= m_Wrapper.m_InGameActionsCallbackInterface.OnMovement;
-                @Movement.performed -= m_Wrapper.m_InGameActionsCallbackInterface.OnMovement;
-                @Movement.canceled -= m_Wrapper.m_InGameActionsCallbackInterface.OnMovement;
-                @Rotation.started -= m_Wrapper.m_InGameActionsCallbackInterface.OnRotation;
-                @Rotation.performed -= m_Wrapper.m_InGameActionsCallbackInterface.OnRotation;
-                @Rotation.canceled -= m_Wrapper.m_InGameActionsCallbackInterface.OnRotation;
-                @Aiming.started -= m_Wrapper.m_InGameActionsCallbackInterface.OnAiming;
-                @Aiming.performed -= m_Wrapper.m_InGameActionsCallbackInterface.OnAiming;
-                @Aiming.canceled -= m_Wrapper.m_InGameActionsCallbackInterface.OnAiming;
-                @Fire.started -= m_Wrapper.m_InGameActionsCallbackInterface.OnFire;
-                @Fire.performed -= m_Wrapper.m_InGameActionsCallbackInterface.OnFire;
-                @Fire.canceled -= m_Wrapper.m_InGameActionsCallbackInterface.OnFire;
+                @Movement.started -= m_Wrapper.m_Player1ActionsCallbackInterface.OnMovement;
+                @Movement.performed -= m_Wrapper.m_Player1ActionsCallbackInterface.OnMovement;
+                @Movement.canceled -= m_Wrapper.m_Player1ActionsCallbackInterface.OnMovement;
+                @Rotation.started -= m_Wrapper.m_Player1ActionsCallbackInterface.OnRotation;
+                @Rotation.performed -= m_Wrapper.m_Player1ActionsCallbackInterface.OnRotation;
+                @Rotation.canceled -= m_Wrapper.m_Player1ActionsCallbackInterface.OnRotation;
+                @Aiming.started -= m_Wrapper.m_Player1ActionsCallbackInterface.OnAiming;
+                @Aiming.performed -= m_Wrapper.m_Player1ActionsCallbackInterface.OnAiming;
+                @Aiming.canceled -= m_Wrapper.m_Player1ActionsCallbackInterface.OnAiming;
+                @Fire.started -= m_Wrapper.m_Player1ActionsCallbackInterface.OnFire;
+                @Fire.performed -= m_Wrapper.m_Player1ActionsCallbackInterface.OnFire;
+                @Fire.canceled -= m_Wrapper.m_Player1ActionsCallbackInterface.OnFire;
             }
-            m_Wrapper.m_InGameActionsCallbackInterface = instance;
+            m_Wrapper.m_Player1ActionsCallbackInterface = instance;
             if (instance != null)
             {
                 @Movement.started += instance.OnMovement;
@@ -275,8 +413,72 @@ public partial class @TankInput : IInputActionCollection2, IDisposable
             }
         }
     }
-    public InGameActions @InGame => new InGameActions(this);
-    public interface IInGameActions
+    public Player1Actions @Player1 => new Player1Actions(this);
+
+    // Player2
+    private readonly InputActionMap m_Player2;
+    private IPlayer2Actions m_Player2ActionsCallbackInterface;
+    private readonly InputAction m_Player2_Movement;
+    private readonly InputAction m_Player2_Rotation;
+    private readonly InputAction m_Player2_Aiming;
+    private readonly InputAction m_Player2_Fire;
+    public struct Player2Actions
+    {
+        private @TankInput m_Wrapper;
+        public Player2Actions(@TankInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Movement => m_Wrapper.m_Player2_Movement;
+        public InputAction @Rotation => m_Wrapper.m_Player2_Rotation;
+        public InputAction @Aiming => m_Wrapper.m_Player2_Aiming;
+        public InputAction @Fire => m_Wrapper.m_Player2_Fire;
+        public InputActionMap Get() { return m_Wrapper.m_Player2; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(Player2Actions set) { return set.Get(); }
+        public void SetCallbacks(IPlayer2Actions instance)
+        {
+            if (m_Wrapper.m_Player2ActionsCallbackInterface != null)
+            {
+                @Movement.started -= m_Wrapper.m_Player2ActionsCallbackInterface.OnMovement;
+                @Movement.performed -= m_Wrapper.m_Player2ActionsCallbackInterface.OnMovement;
+                @Movement.canceled -= m_Wrapper.m_Player2ActionsCallbackInterface.OnMovement;
+                @Rotation.started -= m_Wrapper.m_Player2ActionsCallbackInterface.OnRotation;
+                @Rotation.performed -= m_Wrapper.m_Player2ActionsCallbackInterface.OnRotation;
+                @Rotation.canceled -= m_Wrapper.m_Player2ActionsCallbackInterface.OnRotation;
+                @Aiming.started -= m_Wrapper.m_Player2ActionsCallbackInterface.OnAiming;
+                @Aiming.performed -= m_Wrapper.m_Player2ActionsCallbackInterface.OnAiming;
+                @Aiming.canceled -= m_Wrapper.m_Player2ActionsCallbackInterface.OnAiming;
+                @Fire.started -= m_Wrapper.m_Player2ActionsCallbackInterface.OnFire;
+                @Fire.performed -= m_Wrapper.m_Player2ActionsCallbackInterface.OnFire;
+                @Fire.canceled -= m_Wrapper.m_Player2ActionsCallbackInterface.OnFire;
+            }
+            m_Wrapper.m_Player2ActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Movement.started += instance.OnMovement;
+                @Movement.performed += instance.OnMovement;
+                @Movement.canceled += instance.OnMovement;
+                @Rotation.started += instance.OnRotation;
+                @Rotation.performed += instance.OnRotation;
+                @Rotation.canceled += instance.OnRotation;
+                @Aiming.started += instance.OnAiming;
+                @Aiming.performed += instance.OnAiming;
+                @Aiming.canceled += instance.OnAiming;
+                @Fire.started += instance.OnFire;
+                @Fire.performed += instance.OnFire;
+                @Fire.canceled += instance.OnFire;
+            }
+        }
+    }
+    public Player2Actions @Player2 => new Player2Actions(this);
+    public interface IPlayer1Actions
+    {
+        void OnMovement(InputAction.CallbackContext context);
+        void OnRotation(InputAction.CallbackContext context);
+        void OnAiming(InputAction.CallbackContext context);
+        void OnFire(InputAction.CallbackContext context);
+    }
+    public interface IPlayer2Actions
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnRotation(InputAction.CallbackContext context);

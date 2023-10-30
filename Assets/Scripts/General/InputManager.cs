@@ -1,44 +1,66 @@
+using System;
 using Tank;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class InputManager : MonoBehaviour
 {
-    private TankInput m_TankInput;
-    private TankInput.InGameActions m_InGameActions;
+    [SerializeField] private int playerNumber;
     
-    private TankController m_TankControllerScript;
+    private TankInput m_TankInput;
+    private TankInput.Player1Actions m_Player1Actions;
+    private TankInput.Player2Actions m_Player2Actions;
+    
+    private TankMovement m_TankMovementScript;
     private TankShooter m_TankShooterScript;
 
     private void Awake()
     {
         m_TankInput = new TankInput();
-        m_InGameActions = m_TankInput.InGame;
+        m_Player1Actions = m_TankInput.Player1;
+        m_Player2Actions = m_TankInput.Player2;
 
-        m_TankControllerScript = GetComponent<TankController>();
+        m_TankMovementScript = GetComponent<TankMovement>();
         m_TankShooterScript = GetComponent<TankShooter>();
-        
-        //m_InGameActions.Rotation.performed += ctx => m_TankControllerScript.RotateTank(m_InGameActions.Rotation.ReadValue<float>());
-        m_InGameActions.Fire.performed += ctx => m_TankShooterScript.FireMissile();
+    }
+
+    private void Start()
+    {
+        switch (playerNumber)
+        {
+            case 1:
+                m_Player1Actions.Fire.performed += ctx => m_TankShooterScript.FireMissile();
+                break;
+            case 2:
+                m_Player2Actions.Fire.performed += ctx => m_TankShooterScript.FireMissile();
+                break;
+        }
     }
 
     private void Update()
     {
-        m_TankControllerScript.TankMovement(m_InGameActions.Movement.ReadValue<Vector2>());
-        m_TankControllerScript.RotateTank(m_InGameActions.Rotation.ReadValue<float>());
-    }
-
-    private void LateUpdate()
-    {
-        m_TankControllerScript.AimTurret(m_InGameActions.Aiming.ReadValue<Vector2>());
+        switch (playerNumber)
+        {
+            case 1:
+                m_TankMovementScript.MoveTank(m_Player1Actions.Movement.ReadValue<Vector2>());
+                m_TankMovementScript.RotateTank(m_Player1Actions.Rotation.ReadValue<float>());
+                break;
+            case 2:
+                m_TankMovementScript.MoveTank(m_Player2Actions.Movement.ReadValue<Vector2>());
+                m_TankMovementScript.RotateTank(m_Player2Actions.Rotation.ReadValue<float>());
+                break;
+        }
     }
 
     private void OnEnable()
     {
-        m_InGameActions.Enable();
+        m_Player1Actions.Enable();
+        m_Player2Actions.Enable();
     }
 
     private void OnDisable()
     {
-        m_InGameActions.Disable();
+        m_Player1Actions.Disable();
+        m_Player2Actions.Disable();
     }
 }
